@@ -1,0 +1,14 @@
+$("#edit-company").val(data.c.company);
+$("#edit-surname").val(data.c.fullname);
+$("#edit-call").val(data.c.appellation);
+$("#edit-job").val(data.c.job);
+$("#edit-email").val(data.c.email);
+$("#edit-phone").val(data.c.phone);
+$("#edit-website").val(data.c.website);
+$("#edit-mphone").val(data.c.mphone);
+$("#edit-status").val(data.c.state);
+$("#edit-source").val(data.c.source);
+$("#edit-describe").val(data.c.description);
+$("#edit-contactSummary").val(data.c.contactSummary);
+$("#edit-nextContactTime").val(data.c.nextContactTime);
+$("#edit-address").val(data.c.address);
