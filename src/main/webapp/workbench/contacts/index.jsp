@@ -19,14 +19,62 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 <script type="text/javascript">
 
 	$(function(){
-		
+
+		pageList();
+
 		//定制字段
 		$("#definedColumns > li").click(function(e) {
 			//防止下拉菜单消失
 	        e.stopPropagation();
 	    });
+
+
 		
 	});
+	function pageList(){
+
+		$.ajax({
+
+			url:"workbench/contacts/pageList.do",
+			/*data:{
+				"pageNo":pageNo,
+				"pageSize":pageSize
+			},*/
+			type:"get",
+			dataType:"json",
+			success: function(data){
+				/*
+					data
+						展示联系人信息返回
+						[{联系人1},{联系人2},{联系人3},.。。] List<Contacts> cList
+
+
+				 */
+
+				var html = "";
+
+				$.each(data,function(i,n){
+
+					html += '<tr>';
+					html += '<td><input type="checkbox" name="xz" /></td> ';
+					html += '<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href=\'workbench/contacts/detail.do?id='+n.id +'\';">'+n.fullname+'</a></td>';
+					html += '<td>'+n.customerId+'</td>';
+					html += '<td>'+n.owner+'</td>';
+					html += '<td>'+n.source+'</td>';
+					html += '<td>'+n.birth+'</td>';
+					html += '</tr>';
+
+				})
+
+				$("#contactsBody").html(html);
+
+			}
+
+
+
+		})
+
+	}
 	
 </script>
 </head>
@@ -321,13 +369,13 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	<div style="position: relative; top: -20px; left: 0px; width: 100%; height: 100%;">
 	
 		<div style="width: 100%; position: absolute;top: 5px; left: 10px;">
-		
+		<%--查询模块--%>
 			<div class="btn-toolbar" role="toolbar" style="height: 80px;">
 				<form class="form-inline" role="form" style="position: relative;top: 8%; left: 5px;">
 				  
 				  <div class="form-group">
 				    <div class="input-group">
-				      <div class="input-group-addon">所有者</div>
+				      <div class="input-group-addon">所有者12</div>
 				      <input class="form-control" type="text">
 				    </div>
 				  </div>
@@ -382,11 +430,14 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 				  
 				</form>
 			</div>
+
+
+			<%--联系人展示模块--%>
 			<div class="btn-toolbar" role="toolbar" style="background-color: #F7F7F7; height: 50px; position: relative;top: 10px;">
 				<div class="btn-group" style="position: relative; top: 18%;">
-				  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createContactsModal"><span class="glyphicon glyphicon-plus"></span> 创建</button>
-				  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editContactsModal"><span class="glyphicon glyphicon-pencil"></span> 修改</button>
-				  <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-minus"></span> 删除</button>
+				  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createContactsModal"><span class="glyphicon glyphicon-plus"></span> 创建1</button>
+				  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editContactsModal"><span class="glyphicon glyphicon-pencil"></span> 修改2</button>
+				  <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-minus"></span> 删除3</button>
 				</div>
 				
 				
@@ -403,8 +454,8 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 							<td>生日</td>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
+					<tbody id="contactsBody">
+						<%--<tr>
 							<td><input type="checkbox" /></td>
 							<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href='detail.jsp';">李四</a></td>
 							<td>动力节点</td>
@@ -419,7 +470,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                             <td>zhangsan</td>
                             <td>广告</td>
                             <td>2000-10-10</td>
-                        </tr>
+                        </tr>--%>
 					</tbody>
 				</table>
 			</div>

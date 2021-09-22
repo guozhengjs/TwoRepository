@@ -34,25 +34,25 @@ public class TranController extends HttpServlet {
 
     @Resource
     private UserService userService ;
+    @Resource
+    private TranService tranService;
+    @Resource
+    private CustomerService customerService;
 
     @RequestMapping("/getCharts.do")
     private void getCharts(HttpServletRequest request, HttpServletResponse response) {
 
         System.out.println("取得交易阶段数量统计图表的数据");
 
-        TranService ts = (TranService) ServiceFactory.getService(new TranServiceImpl());
-
+        //TranService ts = (TranService) ServiceFactory.getService(new TranServiceImpl());
         /*
-
             业务层为我们返回
                 total
                 dataList
 
                 通过map打包以上两项进行返回
-
-
          */
-        Map<String,Object> map = ts.getCharts();
+        Map<String,Object> map = tranService.getCharts();
 
         PrintJson.printJsonObj(response, map);
 
@@ -78,9 +78,9 @@ public class TranController extends HttpServlet {
         t.setEditBy(editBy);
         t.setEditTime(editTime);
 
-        TranService ts = (TranService) ServiceFactory.getService(new TranServiceImpl());
+        //TranService ts = (TranService) ServiceFactory.getService(new TranServiceImpl());
 
-        boolean flag = ts.changeStage(t);
+        boolean flag = tranService.changeStage(t);
 
         Map<String,String> pMap = (Map<String,String>)this.getServletContext().getAttribute("pMap");
         t.setPossibility(pMap.get(stage));
@@ -101,9 +101,9 @@ public class TranController extends HttpServlet {
 
         String tranId = request.getParameter("tranId");
 
-        TranService ts = (TranService) ServiceFactory.getService(new TranServiceImpl());
+        //TranService ts = (TranService) ServiceFactory.getService(new TranServiceImpl());
 
-        List<TranHistory> thList= ts.getHistoryListByTranId(tranId);
+        List<TranHistory> thList= tranService.getHistoryListByTranId(tranId);
 
         //阶段和可能性之间的对应关系
         Map<String,String> pMap = (Map<String,String>)this.getServletContext().getAttribute("pMap");
@@ -131,9 +131,9 @@ public class TranController extends HttpServlet {
 
         String id = request.getParameter("id");
 
-        TranService ts = (TranService) ServiceFactory.getService(new TranServiceImpl());
+        //TranService ts = (TranService) ServiceFactory.getService(new TranServiceImpl());
 
-        Tran t = ts.detail(id);
+        Tran t = tranService.detail(id);
 
         //处理可能性
         /*
@@ -194,9 +194,9 @@ public class TranController extends HttpServlet {
         t.setContactSummary(contactSummary);
         t.setNextContactTime(nextContactTime);
 
-        TranService ts = (TranService) ServiceFactory.getService(new TranServiceImpl());
+        //TranService ts = (TranService) ServiceFactory.getService(new TranServiceImpl());
 
-        boolean flag = ts.save(t,customerName);
+        boolean flag = tranService.save(t,customerName);
 
         if(flag){
 
@@ -215,9 +215,9 @@ public class TranController extends HttpServlet {
 
         String name = request.getParameter("name");
 
-        CustomerService cs = (CustomerService) ServiceFactory.getService(new CustomerServiceImpl());
+        //CustomerService cs = (CustomerService) ServiceFactory.getService(new CustomerServiceImpl());
 
-        List<String> sList = cs.getCustomerName(name);
+        List<String> sList = customerService.getCustomerName(name);
 
         PrintJson.printJsonObj(response, sList);
 

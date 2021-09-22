@@ -6,6 +6,7 @@ import com.bjpowernode.crm.workbench.service.ContactsService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class ContactsServiceImpl implements ContactsService {
@@ -20,6 +21,14 @@ public class ContactsServiceImpl implements ContactsService {
         Contacts contacts = contactsDao.getContactsById(id);
 
         return contacts;
+    }
+
+    @Override
+    public List<Contacts> getContactsListAndCustomerName() {
+
+        List<Contacts> cList = contactsDao.getContactsListAndCustomerName();
+
+        return cList;
     }
 
 

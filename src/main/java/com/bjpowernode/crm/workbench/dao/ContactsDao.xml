@@ -5,7 +5,36 @@
 
 <mapper namespace="com.bjpowernode.crm.workbench.dao.ContactsDao">
 
+    <select id="getContactsListAndCustomerName" resultType="Contacts">
 
+        select
+
+        co.id,
+        co.owner,
+        co.source,
+        cu.name as customerId,
+        co.fullname,
+        co.appellation,
+        co.email,
+        co.mphone,
+        co.job,
+        co.birth,
+        co.createBy,
+        co.createTime,
+        co.editBy,
+        co.editTime,
+        co.description,
+        co.contactSummary,
+        co.nextContactTime,
+        co.address
+
+
+        from tbl_contacts co
+        join tbl_customer cu
+        on cu.id = co.customerId
+
+
+    </select>
 
     <select id="getContactsById" resultType="Contacts">
 

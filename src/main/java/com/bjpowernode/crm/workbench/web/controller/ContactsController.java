@@ -1,5 +1,6 @@
 package com.bjpowernode.crm.workbench.web.controller;
 
+import com.bjpowernode.crm.utils.PrintJson;
 import com.bjpowernode.crm.workbench.domain.Clue;
 import com.bjpowernode.crm.workbench.domain.Contacts;
 import com.bjpowernode.crm.workbench.service.ContactsService;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @RequestMapping("/workbench/contacts")
@@ -23,6 +25,16 @@ public class ContactsController extends HttpServlet {
 
     @Resource
     private CustomerService customerService;
+
+    @RequestMapping("/pageList.do")
+    private void pageList(HttpServletRequest request,HttpServletResponse response){
+        System.out.println("联系人信息查询");
+
+        List<Contacts> cList =  contactsService.getContactsListAndCustomerName();
+
+        PrintJson.printJsonObj(response,cList);
+
+    }
 
     @RequestMapping("/detail.do")
     private void detail(String id, HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {

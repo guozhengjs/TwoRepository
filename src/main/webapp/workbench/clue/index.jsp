@@ -386,7 +386,7 @@
                     /*
                         data
                             我们需要的：线索信息列表
-                            [{线索1},{2},{3}] List<Clue> aList
+                            [{线索1},{2},{3}] List<Clue> cList
                             一会分页插件需要的：查询出来的总记录数
                             {"total":100} int total
                             {"total":100,"dataList":[{线索1},{2},{3}]}

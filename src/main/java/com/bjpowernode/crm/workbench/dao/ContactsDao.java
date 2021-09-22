@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface ContactsDao {
 
+    List<Contacts> getContactsListAndCustomerName();
+
     int save(Contacts con);
 
     String getContactsByCid(String customerId);

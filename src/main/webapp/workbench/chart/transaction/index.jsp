@@ -47,7 +47,7 @@
     <script>
 
         $(function () {
-
+            alert("123");
             //页面加载完毕后，绘制统计图表
             getCharts();
 
@@ -116,15 +116,15 @@
                                     }
                                 },
                                 data: data.dataList
-                                /*
-                                    [
+
+                                    /* [
                                         {value: 60, name: '01资质审查'},
                                         {value: 114, name: '02需求分析'},
                                         {value: 220, name: '03价值建议'},
                                         {value: 80, name: '06谈判复审'},
                                         {value: 100, name: '07成交'}
-                                    ]
-                                */
+                                    ]*/
+
                             }
                         ]
                     };
